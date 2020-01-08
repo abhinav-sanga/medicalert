@@ -35,3 +35,16 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+
+.memberID {
+    cursor: pointer;
+    color: #337ab7;
+}
+
+#searchBtn {
+    margin-right: 2.5px;
+}
+
+#clearBtn {
+    margin-left: 2.5px;
+}

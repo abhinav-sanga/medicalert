@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PopulateDataService } from '../services/populate-data.service';
 
 @Component({
   selector: 'app-search-member',
@@ -6,87 +7,72 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-member.component.css']
 })
 export class SearchMemberComponent implements OnInit {
-  replVar = '';
 
-  constructor() { }
+  memberId: number;
+  firstName: string = '';
+  lastName: string = '';
+  returnedArray: any = [];
+
+  constructor(private populateDataService: PopulateDataService) { }
 
   ngOnInit() {
-    $(document).ready(function () {
-      $('#details').hide();
-      $('#accountlist').hide();
+    $('#details').hide();
+    $('#accountlist').hide();
 
-      console.log("ready!");
+    console.log("ready!");
 
-      $("#clearBtn").click(function () {
-        $('#details').hide();
-        $('#accountlist').hide();
+    this.clearAll();
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
       });
+    }
+  }
 
-      var acc = document.getElementsByClassName("accordion");
-      var i;
-
-      for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-          this.classList.toggle("active");
-          var panel = this.nextElementSibling;
-          if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-          } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-          }
-        });
-      }
-    })
+  clearAll() {
+    this.memberId = null;
+    this.firstName = '';
+    this.lastName = '';
+    this.returnedArray = [];
+    $('#details').hide();
+    $('#accountlist').hide();
   }
 
   listData() {
-    var f;
-    if ($("#memberID").val().toString().length === 0) {
-      this.populateAccounts($('#firstName').val(), $('#lastName').val());
-      $('#accountlist').show();
-      
-      if (! $.fn.DataTable.isDataTable( '#accountslist' ) ) {
-        $('#accountslist').DataTable({
-          "columnDefs": [{
-            "targets": 1,
-            "data": "download_link",
-            "render": function (data, type, full, meta) {
-              return `<a onclick="loadDetails(` + data + ')">' + data + '</a>';
-            }
-          }]
-        });
-      }
+    if (this.memberId && this.memberId.toString().length && !this.firstName.length && !this.lastName.length) {
+      this.populateDataService.medicAlertMemberId(this.memberId).subscribe(res => {
+        this.returnedArray = res;
+        $('#accountlist').show();
+      });
+    } else if (this.firstName.trim().length && !this.lastName.trim().length) {
+      this.populateDataService.firstNameOnly(this.firstName).subscribe(res => {
+        this.returnedArray = res;
+        $('#accountlist').show();
+      });
+    } else if (this.firstName.trim().length && this.lastName.trim().length) {
+      this.populateDataService.firstNamelastName(this.firstName, this.lastName).subscribe(res => {
+        this.returnedArray = res;
+        $('#accountlist').show();
+      });
     } else {
-      this.populateDetails($('#memberID').val());
-      $('#details').show();
-      $('#assets').DataTable();
+      this.clearAll();
     }
-
-    // function loadDetails(data) {
-    //   this.populateDetails(data);
-    //   $('#details').show();
-    //   $('#assets').DataTable();
-    // }
-  
-    // function populateDetails(memberId) {
-    //   //alert(memberId);
-    // }
   }
 
   loadDetails(data) {
-    console.log("here");
-    
-    this.populateDetails(data);
-    $('#details').show();
-    $('#assets').DataTable();
-  }
-
-  populateDetails(memberId) {
-    //alert(memberId);
-  }
-
-  populateAccounts(firstName, lastName) {
-    // alert(firstName);
-    // alert(lastName);
+    // if (data && data.trim().length) {
+    //   $('#details').show();
+    //   $('#assets').DataTable();
+    // }
   }
 }
