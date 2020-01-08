@@ -1,0 +1,429 @@
+<div class="main-wrap">
+    <!-- section main content -->
+    <section id="main-content">
+        <div class="content-wrap">
+            <p style="background: #333399;text-align: center; color: #ffff33;font-size:12px;letter-spacing: 1px; padding: 5px;">
+                Call Medical Emergency : 1-800-432-5378</p>
+        </div>
+
+
+        <!-- wrapper -->
+        <div class="wrapper" style="padding: 50px 200px 50px 200px;">
+
+            <div class="row">
+                <div class="col-xs-4" style="margin-left: 250px">
+                    <div id="login-box" class="col-md-12">
+                        <h3 class="text-center text-info">Search Member</h3>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Member ID:</label><br>
+                            <input type="text" name="memberID" id="memberID" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="text-info">First Name:</label><br>
+                            <input type="text" name="firstName" id="firstName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Last Name:</label><br>
+                            <input type="text" name="lastName" id="lastName" class="form-control">
+                        </div>
+
+                        <div class="form-group" style="margin-left: 70px">
+                            <input type="submit" id="searchBtn" name="submit" class="btn btn-info btn-md" value="Search">
+                            <input type="submit" id="clearBtn" name="submit" class="btn btn-info btn-md" value="Clear">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- if list of accounts found based on name search -->
+            <div class="col-xs-12" style="border: 3px solid #ccc;" id="accountlist">
+                <br>
+
+                <p class="accordion" style="text-align: center; color: #000; font-weight: 700">
+                    Accounts
+                </p>
+                <div class="panel">
+                    <table style="width:100%; float: left" id="accountslist" class="display">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>MemberID__c</th>
+                                <th>FirstName Date</th>
+                                <th>LastName</th>
+                                <th>Phone</th>
+                                <th>MobilePhone</th>
+                                <th>OtherPhone</th>
+                                <th>Email</th>
+                                <th>BirthDate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0031Q000020pvsoQAA</td>
+                                <td>42635890030</td>
+                                <td>Test</td>
+                                <td>Test</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>1/4/1976</td>
+                            </tr>
+                            <tr>
+                                <td>0031Q000023FhpdQAC</td>
+                                <td>42788277487</td>
+                                <td>Test</td>
+                                <td>Test</td>
+                                <td></td>
+                                <td>(212) 111-1111</td>
+                                <td></td>
+                                <td>bsorkness@medicalert.org</td>
+                                <td>1/4/1976</td>
+                            </tr>
+                            <tr>
+                                <td>0033600001k1DS2AAM</td>
+                                <td></td>
+                                <td>Test</td>
+                                <td>Test</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>0033600001k1K37AAE</td>
+                                <td></td>
+                                <td>Test</td>
+                                <td>Test</td>
+                                <td>(651) 651-6516</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+            <br>
+            <br>
+
+            <div class="col-xs-12" style="border: 3px solid #ccc;" id="details">
+                <br>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <table style="width:200px; border: 1px solid #cccccc; ">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; background: #cccccc;padding: 5px;">Member ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center;">63735792551</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <table style="width:200px; border: 1px solid #cccccc;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; background: #cccccc;padding: 5px;">Membership Name
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center; font-weight: 700">Advantage Plan 1Yr</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <table style="width:200px; border: 1px solid #cccccc;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center; background: #cccccc;padding: 5px;">Expiry Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center; font-weight: 700">2019 Dec 31</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br><br><br>
+                <!---- First Acc --->
+                <p class="accordion" style="color: #000; font-weight: 700">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Member Information &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Information
+
+                </p>
+                <div class="panel">
+                    <table style="width:100%; float: left">
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Customer ID</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">#012</td>
+                            <th style="border: 1px solid #ccc; padding: 5px;">Relationship ID</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">AOG3600000WzGbzEAF</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Name</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">DanielTest Test11</td>
+                            <th style="border: 1px solid #ccc; padding: 5px;">Related Contact ID</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">0033600000ZqkOgAAJ</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Age & Gender</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">(28) M</td>
+                            <th style="border: 1px solid #ccc; padding: 5px;">Status:</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">Current</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Address</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">1 Embarcadero Ctr, San Francisco,<br> CA 94111-3628</td>
+                            <th style="border: 1px solid #ccc; padding: 5px;">Type</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">Physicians</td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Mobile</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;">Address</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Phone</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">(209) 669-2483</td>
+                            <th style="border: 1px solid #ccc; padding: 5px;">Mobile</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Fax</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;">Phone</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Email ID</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">dsalvatera@medicalalert.org</td>
+                            <th style="border: 1px solid #ccc; padding: 5px;">Work Phone / Other</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Date of Birth</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">2019 Jan 01</td>
+                            <th style="border: 1px solid #ccc; padding: 5px;">Email</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                    </table>
+                </div>
+                <!--  End/ First Acc----->
+
+                <!---- Second Acc --->
+                <p class="accordion" style="text-align: center; color: #000; font-weight: 700">
+                    Contact Coditions / Attachments
+                </p>
+                <div class="panel">
+                    <table style="width:100%; float: left">
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;text-align: center">Name</th>
+                            <th style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">Reactions</th>
+                            <th style="border: 1px solid #ccc; padding: 5px;text-align: center">Attachment ID</th>
+                            <th style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">Attachment Title
+                            </th>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Photo</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;text-align: center">00P1Q00000bnmMXUAY</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center"><a href="#">Salesforce.png</a></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Engraving Only</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Engraving Only</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Aneurysm Coil</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Diabetes Type1</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Tape</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                        <tr style="border: 1px solid #ccc;">
+                            <th style="border: 1px solid #ccc; padding: 5px;">Aspirin</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                        </tr>
+                    </table>
+                </div>
+                <!--  End/ Second Acc----->
+
+
+
+                <!---- Third Acc --->
+                <p class="accordion" style="text-align: center; color: #000; font-weight: 700">
+                    Assets
+                </p>
+                <div class="panel">
+                    <table style="width:100%; float: left" id="assets">
+                        <thead>
+                            <tr style="border: 1px solid #ccc;">
+                                <th style="border: 1px solid #ccc; padding: 5px;text-align: center">Name</th>
+                                <th style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">Engraving</th>
+                                <th style="border: 1px solid #ccc; padding: 5px;text-align: center">Purchase Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Test</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center"></td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center"></td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Advantage Plan 1 Yr</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center"></td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2019-09-05</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Block Sport Silicone Medical ID Bracelet
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2017-12-12</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Collateral Class A</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center"></td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2017-12-19</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Cable Choice Sterling Silver Medic Alert Bracelet</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2017-12-19</td>
+                            </tr>
+
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Medical Alert Cares</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-12-02</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Expedited Processing Service</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-09-14</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">MA+SR Membership Enrolment - 1 Year
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-02</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Collateral Class L</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-02</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">My Medical Alert Service Renewal</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-04-05</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">My Medical Alert Service Renewal</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-04-06</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Caregiver Membership Enrollment-3 Year
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2020-04-28</td>
+                            </tr>
+                            <tr style="border: 1px solid #ccc;">
+                                <td style="border: 1px solid #ccc; padding: 5px;">Collateral Class K</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-03-28</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <!--  End/ Third Acc----->
+
+
+
+            </div>
+        </div>
+
+    </section>
+</div>
