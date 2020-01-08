@@ -10,9 +10,9 @@ export class PopulateDataService {
 
   constructor(private http: HttpClient) { }
 
-  // memberAsset(reqParams) {
-  //   return this.http.get(this.apiUrl + 'memberAsset', { params: new HttpParams().append('memberId', reqParams) });
-  // }
+  memberAsset(reqParams) {
+    return this.http.get(this.apiUrl + 'memberAsset', { params: new HttpParams().append('salesforceId', reqParams) });
+  }
 
   medicAlertMemberId(reqParams) {
     return this.http.get(this.apiUrl + 'medicAlertMemberId', { params: new HttpParams().append('memberId', reqParams) });
@@ -25,5 +25,17 @@ export class PopulateDataService {
 
   firstNameOnly(reqParams) {
     return this.http.get(this.apiUrl + 'firstNameNoLastName', { params: new HttpParams().append('firstName', reqParams) });
+  }
+
+  salesforceId(reqParams) {
+    return this.http.get(this.apiUrl + 'salesforceId', { params: new HttpParams().append('salesforceId', reqParams) });
+  }
+
+  contactRelationship(reqParams) {
+    return this.http.get(this.apiUrl + 'contactRelationship', { params: new HttpParams().append('salesforceId', reqParams) });
+  }
+
+  attachmentId(reqParams) {
+    return this.http.get(this.apiUrl + 'attachmentId', { params: new HttpParams().append('salesforceId', reqParams) });
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { PopulateDataService } from '../services/populate-data.service';
 
 @Component({
@@ -12,15 +13,13 @@ export class SearchMemberComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   returnedArray: any = [];
+  // We use this trigger because fetching the data can be quite long,
+  // thus we ensure the data is fetched before rendering
+  dtTrigger = new Subject();
 
   constructor(private populateDataService: PopulateDataService) { }
 
   ngOnInit() {
-    $('#details').hide();
-    $('#accountlist').hide();
-
-    console.log("ready!");
-
     this.clearAll();
 
     var acc = document.getElementsByClassName("accordion");
@@ -52,17 +51,32 @@ export class SearchMemberComponent implements OnInit {
     if (this.memberId && this.memberId.toString().length && !this.firstName.length && !this.lastName.length) {
       this.populateDataService.medicAlertMemberId(this.memberId).subscribe(res => {
         this.returnedArray = res;
+        // this.createDatatable();
+        this.dtTrigger.next();
         $('#accountlist').show();
+      }, (err) => {
+        console.log(err);
+        this.clearAll();
       });
     } else if (this.firstName.trim().length && !this.lastName.trim().length) {
       this.populateDataService.firstNameOnly(this.firstName).subscribe(res => {
         this.returnedArray = res;
+        // this.createDatatable();
+        this.dtTrigger.next();
         $('#accountlist').show();
+      }, (err) => {
+        console.log(err);
+        this.clearAll();
       });
     } else if (this.firstName.trim().length && this.lastName.trim().length) {
       this.populateDataService.firstNamelastName(this.firstName, this.lastName).subscribe(res => {
         this.returnedArray = res;
+        // this.createDatatable();
+        this.dtTrigger.next();
         $('#accountlist').show();
+      }, (err) => {
+        console.log(err);
+        this.clearAll();
       });
     } else {
       this.clearAll();
@@ -70,9 +84,10 @@ export class SearchMemberComponent implements OnInit {
   }
 
   loadDetails(data) {
-    // if (data && data.trim().length) {
-    //   $('#details').show();
-    //   $('#assets').DataTable();
-    // }
+    //   if (data && data.trim().length) {
+    //     this.populateDataService.salesforceId()
+    //     $('#details').show();
+    //     $('#assets').DataTable();
+    //   }
   }
 }

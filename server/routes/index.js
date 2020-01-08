@@ -46,18 +46,60 @@ router.get('/medicAlertMemberId', (req, res, next) => {
     });
 });
 
-// router.get('/memberAsset', async function(req, res, next) {
-//     request.get({
-//         url: api_endpoint + '/queryMemberAsset/' + req.query.memberId,
-//         json: true
-//     }, (err, resp, body) => {
-//         if (err) {
-//             console.log("Error:", err);
-//         } else {
-//             let returnedArray = [...body];
-//             res.send(returnedArray);
-//         }
-//     });
-// });
+router.get('/salesforceId', (req, res, next) => {
+    request.get({
+        url: api_endpoint + '/queryBySalesforceId/' + req.query.salesforceId,
+        json: true
+    }, (err, resp, body) => {
+        if (err) {
+            console.log("Error:", err);
+        } else {
+            let returnedArray = [...body];
+            res.send(returnedArray);
+        }
+    });
+});
+
+router.get('/contactRelationship', (req, res, next) => {
+    request.get({
+        url: api_endpoint + '/queryByContactRelationship/' + req.query.salesforceId,
+        json: true
+    }, (err, resp, body) => {
+        if (err) {
+            console.log("Error:", err);
+        } else {
+            let returnedArray = [...body];
+            res.send(returnedArray);
+        }
+    });
+});
+
+router.get('/attachmentId', (req, res, next) => {
+    request.get({
+        url: api_endpoint + '/queryByContactRelationship/' + req.query.salesforceId,
+        json: true
+    }, (err, resp, body) => {
+        if (err) {
+            console.log("Error:", err);
+        } else {
+            let returnedArray = [...body];
+            res.send(returnedArray);
+        }
+    });
+});
+
+router.get('/memberAsset', async function(req, res, next) {
+    request.get({
+        url: api_endpoint + '/queryMemberAsset/' + req.query.salesforceId,
+        json: true
+    }, (err, resp, body) => {
+        if (err) {
+            console.log("Error:", err);
+        } else {
+            let returnedArray = [...body];
+            res.send(returnedArray);
+        }
+    });
+});
 
 module.exports = router;
