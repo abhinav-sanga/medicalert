@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group" style="margin-left: 70px">
-                            <input type="submit" id="searchBtn" name="submit" class="btn btn-info btn-md" value="Search">
+                            <input type="submit" id="searchBtn" name="submit" class="btn btn-info btn-md" value="Search" (click)="listData()">
                             <input type="submit" id="clearBtn" name="submit" class="btn btn-info btn-md" value="Clear">
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <tbody>
                             <tr>
                                 <td>0031Q000020pvsoQAA</td>
-                                <td>42635890030</td>
+                                <td (click)="loadDetails(42635890030)">42635890030</td>
                                 <td>Test</td>
                                 <td>Test</td>
                                 <td></td>
@@ -72,7 +72,7 @@
                             </tr>
                             <tr>
                                 <td>0031Q000023FhpdQAC</td>
-                                <td>42788277487</td>
+                                <td (click)="loadDetails(42788277487)">42788277487</td>
                                 <td>Test</td>
                                 <td>Test</td>
                                 <td></td>
