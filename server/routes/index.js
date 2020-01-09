@@ -11,7 +11,7 @@ router.get('/firstNamelastName', (req, res, next) => {
         if (err) {
             console.log("Error:", err);
         } else {
-            let returnedArray = [...body];
+            let returnedArray = body;
             res.send(returnedArray);
         }
     });
@@ -26,7 +26,7 @@ router.get('/firstNameNoLastName', (req, res, next) => {
         if (err) {
             console.log("Error:", err);
         } else {
-            let returnedArray = [...body];
+            let returnedArray = body;
             res.send(returnedArray);
         }
     });
@@ -40,7 +40,7 @@ router.get('/medicAlertMemberId', (req, res, next) => {
         if (err) {
             console.log("Error:", err);
         } else {
-            let returnedArray = [...body];
+            let returnedArray = body;
             res.send(returnedArray);
         }
     });
@@ -54,7 +54,7 @@ router.get('/salesforceId', (req, res, next) => {
         if (err) {
             console.log("Error:", err);
         } else {
-            let returnedArray = [...body];
+            let returnedArray = body;
             res.send(returnedArray);
         }
     });
@@ -68,7 +68,7 @@ router.get('/contactRelationship', (req, res, next) => {
         if (err) {
             console.log("Error:", err);
         } else {
-            let returnedArray = [...body];
+            let returnedArray = body;
             res.send(returnedArray);
         }
     });
@@ -76,13 +76,13 @@ router.get('/contactRelationship', (req, res, next) => {
 
 router.get('/attachmentId', (req, res, next) => {
     request.get({
-        url: api_endpoint + '/queryByContactRelationship/' + req.query.salesforceId,
+        url: api_endpoint + '/queryByAttachmentId/' + req.query.salesforceId,
         json: true
     }, (err, resp, body) => {
         if (err) {
             console.log("Error:", err);
         } else {
-            let returnedArray = [...body];
+            let returnedArray = body;
             res.send(returnedArray);
         }
     });
@@ -96,7 +96,7 @@ router.get('/memberAsset', async function(req, res, next) {
         if (err) {
             console.log("Error:", err);
         } else {
-            let returnedArray = [...body];
+            let returnedArray = body;
             res.send(returnedArray);
         }
     });

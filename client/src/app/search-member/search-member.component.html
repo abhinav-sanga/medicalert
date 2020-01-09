@@ -44,7 +44,7 @@
                     Accounts
                 </p>
                 <div class="panel">
-                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="width:100%; float: left" id="accountslist" class="display">
+                    <table datatable [dtTrigger]="dtTrigger" style="width:100%; float: left" id="accountslist" class="display">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -61,7 +61,7 @@
                         <tbody>
                             <tr *ngFor='let data of returnedArray; let i of index;'>
                                 <td>{{data.Id}}</td>
-                                <td (click)="loadDetails(data.MemberID__c)" class="memberID">{{data.MemberID__c}}</td>
+                                <td (click)="loadDetails(data.MemberID__c, data.Id)" class="memberID">{{data.MemberID__c}}</td>
                                 <td>{{data.FirstName}}</td>
                                 <td>{{data.LastName}}</td>
                                 <td>{{data.Phone}}</td>
@@ -82,7 +82,7 @@
             <div class="col-xs-12" style="border: 3px solid #ccc;" id="details">
                 <br>
 
-                <div class="row">
+                <div class="row" *ngIf="membershipDetails.length">
                     <div class="col-xs-4">
                         <table style="width:200px; border: 1px solid #cccccc; ">
                             <thead>
@@ -92,7 +92,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="text-align: center;">63735792551</td>
+                                    <td style="text-align: center;">{{membershipDetails[0].MemberID__c}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -108,7 +108,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="text-align: center; font-weight: 700">Advantage Plan 1Yr</td>
+                                    <td style="text-align: center; font-weight: 700">{{membershipDetails[0].ServiceEntitlementName__c}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -123,7 +123,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="text-align: center; font-weight: 700">2019 Dec 31</td>
+                                    <td style="text-align: center; font-weight: 700">{{membershipDetails[0].c4g_LatestMembershipEndDate__c}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -137,40 +137,40 @@
 
                 </p>
                 <div class="panel">
-                    <table style="width:100%; float: left">
+                    <table style="width:100%; float: left" *ngIf="membershipDetails.length && contactRelation.length">
                         <tr style="border: 1px solid #ccc;">
                             <th style="border: 1px solid #ccc; padding: 5px;">Customer ID</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">#012</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
                             <th style="border: 1px solid #ccc; padding: 5px;">Relationship ID</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">AOG3600000WzGbzEAF</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{contactRelation[0].ID}}</td>
                         </tr>
                         <tr style="border: 1px solid #ccc;">
                             <th style="border: 1px solid #ccc; padding: 5px;">Name</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">DanielTest Test11</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{membershipDetails[0].FirstName}} {{membershipDetails[0].LastName}}</td>
                             <th style="border: 1px solid #ccc; padding: 5px;">Related Contact ID</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">0033600000ZqkOgAAJ</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{contactRelation[0].npe4__RelatedContact__c}}</td>
                         </tr>
                         <tr style="border: 1px solid #ccc;">
                             <th style="border: 1px solid #ccc; padding: 5px;">Age & Gender</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">(28) M</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{membershipDetails[0].Gender__c}}</td>
                             <th style="border: 1px solid #ccc; padding: 5px;">Status:</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">Current</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{contactRelation[0].npe4__Status__c}}</td>
                         </tr>
                         <tr style="border: 1px solid #ccc;">
                             <th style="border: 1px solid #ccc; padding: 5px;">Address</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">1 Embarcadero Ctr, San Francisco,<br> CA 94111-3628</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{membershipDetails[0].MailingStreet}},{{membershipDetails[0].MailingCity}}<br> {{membershipDetails[0].MailingState}} {{membershipDetails[0].MailingPostalCode}}</td>
                             <th style="border: 1px solid #ccc; padding: 5px;">Type</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">Physicians</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{contactRelation[0].npe4__Type__c}}</td>
                         </tr>
                         <tr style="border: 1px solid #ccc;">
                             <th style="border: 1px solid #ccc; padding: 5px;">Mobile</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{membershipDetails[0].MobilePhone}}</td>
                             <th style="border: 1px solid #ccc; padding: 5px;">Address</th>
                             <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
                         </tr>
                         <tr style="border: 1px solid #ccc;">
                             <th style="border: 1px solid #ccc; padding: 5px;">Phone</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">(209) 669-2483</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
                             <th style="border: 1px solid #ccc; padding: 5px;">Mobile</th>
                             <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
                         </tr>
@@ -182,13 +182,13 @@
                         </tr>
                         <tr style="border: 1px solid #ccc;">
                             <th style="border: 1px solid #ccc; padding: 5px;">Email ID</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">dsalvatera@medicalalert.org</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{membershipDetails[0].Email}}</td>
                             <th style="border: 1px solid #ccc; padding: 5px;">Work Phone / Other</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{membershipDetails.npe01__WorkPhone__c}}</td>
                         </tr>
                         <tr style="border: 1px solid #ccc;">
                             <th style="border: 1px solid #ccc; padding: 5px;">Date of Birth</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;">2019 Jan 01</td>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;">{{membershipDetails[0].BirthDate}}</td>
                             <th style="border: 1px solid #ccc; padding: 5px;">Email</th>
                             <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
                         </tr>
@@ -209,47 +209,13 @@
                             <th style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">Attachment Title
                             </th>
                         </tr>
-                        <tr style="border: 1px solid #ccc;">
-                            <th style="border: 1px solid #ccc; padding: 5px;">Photo</th>
+                        <tr style="border: 1px solid #ccc;" *ngFor='let attachment of attachmentDetails;'>
+                            <th style="border: 1px solid #ccc; padding: 5px;">{{attachment.Name}}</th>
                             <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                            <th style="border: 1px solid #ccc; padding: 5px;text-align: center">00P1Q00000bnmMXUAY</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center"><a href="#">Salesforce.png</a></td>
-                        </tr>
-                        <tr style="border: 1px solid #ccc;">
-                            <th style="border: 1px solid #ccc; padding: 5px;">Engraving Only</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                        </tr>
-                        <tr style="border: 1px solid #ccc;">
-                            <th style="border: 1px solid #ccc; padding: 5px;">Engraving Only</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                        </tr>
-                        <tr style="border: 1px solid #ccc;">
-                            <th style="border: 1px solid #ccc; padding: 5px;">Aneurysm Coil</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                        </tr>
-                        <tr style="border: 1px solid #ccc;">
-                            <th style="border: 1px solid #ccc; padding: 5px;">Diabetes Type1</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                        </tr>
-                        <tr style="border: 1px solid #ccc;">
-                            <th style="border: 1px solid #ccc; padding: 5px;">Tape</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                        </tr>
-                        <tr style="border: 1px solid #ccc;">
-                            <th style="border: 1px solid #ccc; padding: 5px;">Aspirin</th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
-                            <th style="border: 1px solid #ccc; padding: 5px;"></th>
-                            <td style="border: 1px solid #ccc; padding: 5px 10px;"></td>
+                            <th style="border: 1px solid #ccc; padding: 5px;text-align: center">{{attachment.Id}}</th>
+                            <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">
+                                <a href="#"></a>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -262,7 +228,7 @@
                     Assets
                 </p>
                 <div class="panel">
-                    <table style="width:100%; float: left" id="assets">
+                    <table datatable [dtTrigger]="dtAssetTrigger" style="width:100%; float: left" id="assets">
                         <thead>
                             <tr style="border: 1px solid #ccc;">
                                 <th style="border: 1px solid #ccc; padding: 5px;text-align: center">Name</th>
@@ -271,114 +237,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Test</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center"></td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center"></td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Advantage Plan 1 Yr</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center"></td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2019-09-05</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Block Sport Silicone Medical ID Bracelet
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2017-12-12</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Collateral Class A</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center"></td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2017-12-19</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Cable Choice Sterling Silver Medic Alert Bracelet</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2017-12-19</td>
-                            </tr>
-
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Medical Alert Cares</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-12-02</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Expedited Processing Service</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-09-14</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">MA+SR Membership Enrolment - 1 Year
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-02</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Collateral Class L</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-02</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Donation</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-10-11</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">My Medical Alert Service Renewal</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-04-05</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">My Medical Alert Service Renewal</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-04-06</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Caregiver Membership Enrollment-3 Year
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2020-04-28</td>
-                            </tr>
-                            <tr style="border: 1px solid #ccc;">
-                                <td style="border: 1px solid #ccc; padding: 5px;">Collateral Class K</td>
-                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">66735792551
-                                </td>
-                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">2018-03-28</td>
+                            <tr style="border: 1px solid #ccc;" *ngFor='let asset of assetDetails;'>
+                                <td style="border: 1px solid #ccc; padding: 5px;">{{asset.Name}}</td>
+                                <td style="border: 1px solid #ccc; padding: 5px 10px;text-align: center">{{asset.maf_EngraveLine__c}}</td>
+                                <td style="border: 1px solid #ccc; padding: 5px;text-align: center">{{asset.PurchaseDate}}</td>
                             </tr>
                         </tbody>
 

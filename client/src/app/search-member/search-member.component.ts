@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { PopulateDataService } from '../services/populate-data.service';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-search-member',
@@ -13,9 +14,15 @@ export class SearchMemberComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   returnedArray: any = [];
+  salesforceId: string = '';
+  membershipDetails: any = [];
+  contactRelation: any = [];
+  attachmentDetails: any = [];
+  assetDetails: any = [];
   // We use this trigger because fetching the data can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger = new Subject();
+  dtAssetTrigger = new Subject();
 
   constructor(private populateDataService: PopulateDataService) { }
 
@@ -47,13 +54,19 @@ export class SearchMemberComponent implements OnInit {
     $('#accountlist').hide();
   }
 
-  listData() {
+   listData() {
+    $('#details').hide();
+    $('#accountlist').hide();
+    $('#assets').DataTable().destroy();
+    $('#accountslist').DataTable().destroy();
     if (this.memberId && this.memberId.toString().length && !this.firstName.length && !this.lastName.length) {
       this.populateDataService.medicAlertMemberId(this.memberId).subscribe(res => {
         this.returnedArray = res;
-        // this.createDatatable();
+        if (this.returnedArray && this.returnedArray.length && this.returnedArray[0].Id) {
+          this.loadDetails(this.returnedArray[0].MemberID__c, this.returnedArray[0].Id);
+        }
         this.dtTrigger.next();
-        $('#accountlist').show();
+        // $('#accountlist').show();
       }, (err) => {
         console.log(err);
         this.clearAll();
@@ -61,7 +74,6 @@ export class SearchMemberComponent implements OnInit {
     } else if (this.firstName.trim().length && !this.lastName.trim().length) {
       this.populateDataService.firstNameOnly(this.firstName).subscribe(res => {
         this.returnedArray = res;
-        // this.createDatatable();
         this.dtTrigger.next();
         $('#accountlist').show();
       }, (err) => {
@@ -71,7 +83,6 @@ export class SearchMemberComponent implements OnInit {
     } else if (this.firstName.trim().length && this.lastName.trim().length) {
       this.populateDataService.firstNamelastName(this.firstName, this.lastName).subscribe(res => {
         this.returnedArray = res;
-        // this.createDatatable();
         this.dtTrigger.next();
         $('#accountlist').show();
       }, (err) => {
@@ -83,11 +94,29 @@ export class SearchMemberComponent implements OnInit {
     }
   }
 
-  loadDetails(data) {
-    //   if (data && data.trim().length) {
-    //     this.populateDataService.salesforceId()
-    //     $('#details').show();
-    //     $('#assets').DataTable();
-    //   }
+  loadDetails(memId, salesId) {
+    if (memId && memId.trim().length) {
+      this.populateDataService.salesforceId(salesId).subscribe(res => {
+        this.membershipDetails = res;
+      });
+      this.populateDataService.contactRelationship(salesId).subscribe(res => {
+        this.contactRelation = res;
+      });
+      this.populateDataService.attachmentId(salesId).subscribe(res => {
+        console.log(res);
+        this.attachmentDetails = res;
+      });
+      this.populateDataService.memberAsset(salesId).subscribe(res => {
+        this.assetDetails = res;
+        $('#details').show();
+        this.dtAssetTrigger.next();
+      });
+    }
   }
+
+  ngOnDestroy(): void {
+    this.dtAssetTrigger.unsubscribe();
+    this.dtTrigger.unsubscribe();
+  }
+
 }
