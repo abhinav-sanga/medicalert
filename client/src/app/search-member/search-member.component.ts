@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { PopulateDataService } from '../services/populate-data.service';
-import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-search-member',
@@ -19,6 +18,7 @@ export class SearchMemberComponent implements OnInit {
   contactRelation: any = [];
   attachmentDetails: any = [];
   assetDetails: any = [];
+  isLoading: boolean = false;
   // We use this trigger because fetching the data can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger = new Subject();
@@ -50,40 +50,48 @@ export class SearchMemberComponent implements OnInit {
     this.firstName = '';
     this.lastName = '';
     this.returnedArray = [];
+    $('#assets').DataTable().destroy();
+    $('#accountslist').DataTable().destroy();
     $('#details').hide();
     $('#accountlist').hide();
+    $('#contactRelations').DataTable().destroy();
   }
 
-   listData() {
+  listData() {
     $('#details').hide();
     $('#accountlist').hide();
     $('#assets').DataTable().destroy();
     $('#accountslist').DataTable().destroy();
+    // $('#contactRelations').DataTable().destroy();
     if (this.memberId && this.memberId.toString().length && !this.firstName.length && !this.lastName.length) {
+      this.isLoading = true;
       this.populateDataService.medicAlertMemberId(this.memberId).subscribe(res => {
         this.returnedArray = res;
         if (this.returnedArray && this.returnedArray.length && this.returnedArray[0].Id) {
           this.loadDetails(this.returnedArray[0].MemberID__c, this.returnedArray[0].Id);
         }
-        this.dtTrigger.next();
-        // $('#accountlist').show();
+        // this.dtTrigger.next();
       }, (err) => {
         console.log(err);
         this.clearAll();
       });
     } else if (this.firstName.trim().length && !this.lastName.trim().length) {
+      this.isLoading = true;
       this.populateDataService.firstNameOnly(this.firstName).subscribe(res => {
         this.returnedArray = res;
         this.dtTrigger.next();
+        this.isLoading = false;
         $('#accountlist').show();
       }, (err) => {
         console.log(err);
         this.clearAll();
       });
     } else if (this.firstName.trim().length && this.lastName.trim().length) {
+      this.isLoading = true;
       this.populateDataService.firstNamelastName(this.firstName, this.lastName).subscribe(res => {
         this.returnedArray = res;
         this.dtTrigger.next();
+        this.isLoading = false;
         $('#accountlist').show();
       }, (err) => {
         console.log(err);
@@ -94,23 +102,20 @@ export class SearchMemberComponent implements OnInit {
     }
   }
 
-  loadDetails(memId, salesId) {
+  async loadDetails(memId, salesId) {
     if (memId && memId.trim().length) {
-      this.populateDataService.salesforceId(salesId).subscribe(res => {
-        this.membershipDetails = res;
-      });
-      this.populateDataService.contactRelationship(salesId).subscribe(res => {
-        this.contactRelation = res;
-      });
-      this.populateDataService.attachmentId(salesId).subscribe(res => {
-        console.log(res);
-        this.attachmentDetails = res;
-      });
-      this.populateDataService.memberAsset(salesId).subscribe(res => {
-        this.assetDetails = res;
+      this.isLoading = true;
+      try {
+        this.membershipDetails = await this.populateDataService.salesforceId(salesId).toPromise();
+        this.contactRelation = await this.populateDataService.contactRelationship(salesId).toPromise();
+        this.attachmentDetails = await this.populateDataService.attachmentId(salesId).toPromise();
+        this.assetDetails = await this.populateDataService.memberAsset(salesId).toPromise();
         $('#details').show();
-        this.dtAssetTrigger.next();
-      });
+        // this.dtAssetTrigger.next();
+      } catch (error) {
+        console.log(error);
+      }
+      this.isLoading = false;
     }
   }
 
