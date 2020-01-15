@@ -12,6 +12,10 @@
     margin-bottom: 0px;
 }
 
+td {
+    word-wrap: break-word;
+}
+
 .active,
 .accordion:hover {
     background-color: #ccc;
